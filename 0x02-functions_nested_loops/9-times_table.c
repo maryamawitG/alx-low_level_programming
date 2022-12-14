@@ -5,37 +5,40 @@
  * c : the multiple of a and b
  * Return: void
  */
-
 void times_table(void)
 {
-	int a, b, c;
+	int a = 0;
+	int b;
+	int m;
 
-	for (a = 0; a <= 9; a++)
+	while (a <= 9)
 	{
-		for (b = 0; b <= 9; b++)
+		b = 0;
+		while (b <= 9)
 		{
-			c = a * b;
-			if (c > 9)
+			m = a * b;
+			if (b == 0)
 			{
-				d = c % 10;
-				e = (c - d) / 10;
-
-				_putchar(',');
+				_putchar('0' + m);
+			}
+			else if (m < 10)
+			{
 				_putchar(' ');
-				_putchar(' ');
+				_putchar('0' + m);
 			}
 			else
 			{
-				if (b != 0)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar(' ');
-				}
-				_putchar(c + '0');
+				_putchat('0' + m / 10);
+				_putchar('0' + m % 10);
 			}
+			if (b < 9)
+			{
+				_putchar(',');
+				_putchar(' ');
+			}
+			b++;
 		}
 		_putchar('\n');
+		a++;
 	}
-}
 }
