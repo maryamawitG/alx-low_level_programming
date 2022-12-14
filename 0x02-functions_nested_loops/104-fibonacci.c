@@ -22,18 +22,19 @@ int main(void)
 		af += be;
 		be = af - be;
 	}
-	be1 = (be / 1);
-	be2 = (be % 1);
-	af1 = (af / 1);
-	af2 = (af % 1);
+	be1 = (be / b);
+	be2 = (be % b);
+	af1 = (af / b);
+	af2 = (af % b);
 	for (a = 92; a < 99; ++a)
 	{
-		printf(", %lu", af1 + (af2 / 1));
-		printf("%lu", af2 % 1);
+		printf(", %lu", af1 + (af2 / b));
+		printf("%lu", af2 % b);
 		af1 = af1 + be1;
 		be1 = af1 - be1;
 		af2 = af2 + be2;
 		be2 = af2 - be2;
 	}
 	printf("\n");
+	return (0);
 }
