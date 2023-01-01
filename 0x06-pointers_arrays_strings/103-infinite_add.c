@@ -1,50 +1,51 @@
 #include "main.h"
-
-char *add_strings(char *n1, char *n2, char *r, int r_index);
-char *infinite_add(char *n1, char *n2, char *r, int size_r);
+#include <stdio.h>
 
 /**
- * add_strings - Adds the numbers stored in two strings.
- * @n1: The string containing the first number to be added.
- * @n2: The string containing the second number to be added.
- * @r: The buffer to store the result.
- * @r_index: The current index of the buffer.
- *
- * Return: If r can store the sum - a pointer to the result.
- *         If r cannot store the sum - 0.
+ * print_buffer - Prints a buffer
+ * @b: char
+ * @size: int
+ * Return:void
  */
-
-
-char *add_strings(char *n1, char *n2, char *r, int r_index)
+void print_buffer(char *b, int size)
 {
-	int num, tens = 0;
+	int x, i;
 
-	for (; *n1 && *n2; n1--, n2--, r_index--)
+	for (x = 0; x < size; x += 10)
 	{
-		num = (*n1 - '0') + (*n2 - '0');
-		num += tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
+		printf("%08x: ", x);
+
+		for (i = 0; i < 10; i++)
+		{
+			if ((i + x) >= size)
+				printf("  ");
+
+			else
+				printf("%02x", *(b + i + x));
+
+			if ((i % 2) != 0 && i != 0)
+				printf(" ");
+		}
+
+		for (i = 0; i < 10; i++)
+		{
+			if ((i + x) >= size)
+				break;
+
+			else if (*(b + i + x) >= 31 &&
+				 *(b + i + x) <= 126)
+				printf("%c", *(b + i + x));
+
+			else
+				printf(".");
+		}
+
+		if (x >= size)
+			continue;
+
+		printf("\n");
 	}
-	for (; *n1; n1--, r_index--)
-	{
-		num = (*n1 - '0') + tens;
-		 *(r + r_index) = (num % 10) + '0';
-		 tens = num / 10;
-	}
-	for (; *n2; n2--, r_index--)
-	{
-		num = (*n2 - '0') + tens;
-		*(r + r_index) = (num % 10) + '0';
-		tens = num / 10;
-	}
-	if (tens && r_index >= 0)
-	{
-		*(r + r_index) = (tens % 10) + '0';
-		return (r + r_index);
-	}
-	else if (tens && r_index < 0)
-		return (0);
-	return (r + r_index + 1);
+
+	if (size <= 0)
+		printf("\n");
 }
-
