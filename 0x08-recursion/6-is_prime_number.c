@@ -14,7 +14,7 @@ int _divisible(int num, int div)
 {
 	if (num % div == 0)
 		return (0);
-	if (div == num)
+	if (div == num / 2)
 		return (1);
 	return (_divisible(num, div + 1));
 }
